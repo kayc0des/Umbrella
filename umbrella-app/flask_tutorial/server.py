@@ -10,4 +10,4 @@ def hello_world():
     return 'Hello World!'
 
 if __name__ == '__main__': # ensures the script is executed directly and not when imported as a module
-    app.run(host='0.0.0.0', port=8080) #listen on all available network interfaces and onn port 8080
+    app.run(host='0.0.0.0', port=8080) #listen on all available network interfaces and on port 8080
