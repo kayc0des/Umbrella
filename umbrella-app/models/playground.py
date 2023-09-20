@@ -47,6 +47,6 @@ class User():
             #    setattr(self, key, value)
 
 
-user1 = User(name = 'Kingsley', lastName = 'Budu')
+user1 = User(name = 'Foo', lastName = 'Bar')
 print(user1.name)
 print(user1.__dict__)

@@ -24,8 +24,10 @@ class BaseModel():
 
     def to_dict(self):
         bm_dict = self.__dict__
-        bm_dict[__class__] = self.__class__.__name__
+        bm_dict['__class__'] = self.__class__.__name__
+        return bm_dict
     
 # Debug
 model = BaseModel()
-model.to_dict()
+print(type(model.to_dict()))
+print(model.to_dict())
