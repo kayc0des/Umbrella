@@ -1,8 +1,22 @@
 {
-    "dict.99": {
-        "id": 99,
+    "BaseModel.8aee8c8a-e79b-410f-acad-f3c8a32f2274": {
+        "id": "8aee8c8a-e79b-410f-acad-f3c8a32f2274",
+        "created_at": "2023-09-20T17:06:37.098430",
+        "updated_at": "2023-09-20T17:06:37.098899",
         "name": "test",
-        "year": 2023,
-        "speciality": "Software Engineering"
+        "use": "debug",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.c8c046d2-6a71-4f24-9538-1c2d2e199889": {
+        "id": "c8c046d2-6a71-4f24-9538-1c2d2e199889",
+        "created_at": "2023-09-20T17:06:37.098930",
+        "updated_at": "2023-09-20T17:06:37.098930",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.c8c046d2-6a71-4f24-9538-1c2d2e199809": {
+        "id": "c8c046d2-6a71-4f24-9538-1c2d2e199889",
+        "created_at": "2023-09-20T17:06:37.098930",
+        "updated_at": "2023-09-20T17:06:37.098930",
+        "__class__": "BaseModel"
     }
 }

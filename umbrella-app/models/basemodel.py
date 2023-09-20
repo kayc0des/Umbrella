@@ -1,5 +1,8 @@
 import uuid
 import datetime
+from engine.file_storage import FileStorage
+
+storage = FileStorage()
 
 class BaseModel():
     """BaseModel Class for all umbrella Data Models"""
@@ -16,6 +19,9 @@ class BaseModel():
 
     def save(self):
         # Updates the created at time
+        key = f"{self.__class__.__name__}.{self.id}"
+        storage.new(key, self.to_dict())
+        storage.save()
         self.updated_at = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")
 
     def __str__(self):
@@ -24,10 +30,13 @@ class BaseModel():
 
     def to_dict(self):
         bm_dict = self.__dict__
+        bm_dict['id'] = str(self.id)
         bm_dict['__class__'] = self.__class__.__name__
         return bm_dict
     
 # Debug
-model = BaseModel()
-print(type(model.to_dict()))
-print(model.to_dict())
+model = BaseModel(name='test', use='debug')
+model.save()
+
+model2 = BaseModel()
+model2.save()
