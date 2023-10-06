@@ -44,16 +44,10 @@ main{
     width: 45%;
     top: 0;
     left: 0;
-}
-
-.carousel {
-    position: absolute;
-    height: 100%;
-    width: 55%;
-    left: 45%;
-    top: 0;
-    background-color: #e0d1ef;
-    border-radius: 2rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    transition: .8s ease-in-out;
 }
 
 form{
@@ -64,6 +58,14 @@ form{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    transition: opacity 0.02s 0.4s;
+}
+
+form.sign-up-form {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .logo {
@@ -72,13 +74,15 @@ form{
 }
 
 .logo img {
-    width: 27px;
-    margin: 0.3rem;
+    width: 150px;
+    margin-right: 0.3rem;
+    opacity: .5;
 }
 
 .heading h2 {
-    font-family: 2.1rem;
-    font-weight: 800;
+    font-size: 2.0rem;
+    font-weight: 700;
+    letter-spacing: -0.5;
     color: #151111;
 }
 
@@ -161,7 +165,7 @@ label {
 
 .text {
     color: #bbb;
-    font: 0.7rem;
+    font-size: 0.7rem;
 }
 
 .text a {
@@ -171,4 +175,208 @@ label {
 
 .text a:hover {
     color: #663399;
+}
+
+main.sign-up-mode .forms-wrap {
+    left: 55%;
+}
+
+main.sign-up-mode form.sign-in-form {
+    opacity: 0;
+    pointer-events: none;
+}
+
+main.sign-up-mode form.sign-up-form {
+    opacity: 1;
+    pointer-events: all;
+}
+
+main.sign-up-mode .carousel {
+    left: 0;
+}
+
+.carousel {
+    position: absolute;
+    height: 100%;
+    width: 55%;
+    left: 45%;
+    top: 0;
+    background-color: #e0d1ef;
+    border-radius: 2rem;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    padding: 2rem;
+    transition: .8s;
+    overflow: hidden;
+}
+
+.images-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+}
+.image {
+    width: 100%;
+    height: 400px;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    opacity: 0;
+    transition: opacity 0.3s, transform .5s;
+}
+
+.img-1 {
+    transform: translate(0, -50px);
+}
+
+.img-2 {
+    transform: scale(0.4, 0.5);
+}
+
+.img-3 {
+    transform: scale(0.3) rotate(-20deg);
+}
+
+.image.show {
+    opacity: 1;
+    transform: none;
+}
+
+.text-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.text-wrap {
+    max-height: 2rem;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+}
+
+.text-group {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    transform: translateY(0);
+    transition: .5s;
+}
+.text-group h2 {
+    line-height: 2rem;
+    font-weight: 600;
+    font-size: 1.6rem;
+}
+
+.bullets {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bullets span {
+    display: block;
+    width: 0.5rem;
+    height: 0.5rem;
+    background-color: #aaa;
+    margin: 0 0.25rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.bullets span.active {
+    width: 1.1rem;
+    background-color: #151111;
+    border-radius: 1rem;
+}
+
+@media (max-width: 850px) {
+    .box{
+        height: auto;
+        max-width: 550px;
+        overflow: hidden;
+    }
+
+    .inner-box {
+        position: static;
+        transform: none;
+        width: revert;
+        height: revert;
+    }
+
+    .forms-wrap {
+        position: revert;
+        width: 100%;
+        height: auto;
+    }
+
+    form{
+        max-width: revert;
+        padding: 1.5rem 2.5rem 2rem;
+        transition: transform 0.8s ease-in-out, opacity .45s linear;
+    }
+
+    .heading {
+        margin: 2rem 0;
+    }
+
+    form.sign-up-form {
+        transform: translateX(100%);
+    }
+
+    main.sign-up-mode form.sign-in-form{
+        transform: translateX(-100%);
+    }
+
+    main.sign-up-mode form.sign-up-form{
+        transform: translateX(0);
+    }
+
+    .carousel {
+        position: revert;
+        height: auto;
+        width: 100%;
+        padding: 3rem 2rem;
+        display: flex;
+
+    }
+
+    .images-wrapper {
+        display: none;
+    }
+
+    .text-slider {
+        width: 100%;
+    }
+}
+
+@media (max-width: 530px) {
+    main {
+        padding: 1rem;
+    }
+
+    .box {
+        border-radius: 2rem;
+    }
+
+    .inner-box {
+        padding: 1rem;
+    }
+
+    .carousel {
+        padding: 1.5rem 1rem;
+        border-radius: 1.6rem;
+    }
+
+    .text-wrap {
+        margin-bottom: 1rem;
+    }
+
+    .text-group h2{ 
+        font-size: 1.2rem;
+    }
+
+    form {
+        padding: 1rem 2rem 1.5rem;
+    }
 }
