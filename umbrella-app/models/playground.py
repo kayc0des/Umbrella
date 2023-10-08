@@ -25,7 +25,7 @@ def multiplyFunc(*args):
     result = 1
     if args:
         for arg in args:
-            result = result * arg
+            result *= arg
         return result
     else:
         result = 0

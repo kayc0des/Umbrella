@@ -3,7 +3,7 @@ import json
 class FileStorage():
     """Serializes instances to JSON and deserializes JSON to instances"""
 
-    __file_path = 'engine/storage.json'
+    __file_path = 'storage.json'
     __objects = dict()
 
     def all(self):
@@ -15,19 +15,15 @@ class FileStorage():
         self.__objects[key] = obj
 
     def save(self):
-        print(self.__objects)
+        """Convert object into JSON"""
         with open(self.__file_path, "w") as json_file:
             json.dump(self.__objects, json_file, indent=4)
 
     def reload(self):
+        """Convert JSON to object"""
         try:
             with open(self.__file_path, "r") as json_file:
                 self.__objects = json.load(json_file)
-                #self.__objects = data.get("objects", [])
-                print(self.__objects)
-        except FileNotFoundError:
-            pass
-            
-storage = FileStorage()
-storage.reload()
-print(storage.all())
+                print(f"After reload we have {self.__objects}")
+        except Exception as error:
+            print(f"Error: {error}")

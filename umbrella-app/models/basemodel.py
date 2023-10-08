@@ -34,9 +34,16 @@ class BaseModel():
         bm_dict['__class__'] = self.__class__.__name__
         return bm_dict
     
+    def from_dict(self):
+        
+        pass
+    
 # Debug
 model = BaseModel(name='test', use='debug')
 model.save()
 
-model2 = BaseModel()
-model2.save()
+model2 = BaseModel(name='test2', use='debug')
+check1 = model2.save()
+
+check2 = storage.reload()
+print(check1 == check2)
