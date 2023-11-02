@@ -13,16 +13,16 @@ body, input {
     font-family: 'Montserrat', sans-serif;
 }
 
-.container {
-    width: 100%;
+.hero {
     background-color: #663399;
-    min-height: 10vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 100vh;
 }
 
-.content {
-    background-color: white;
-    margin: 2rem;
+.nav-item .nav-link {
+    color: white;
+}
+
+.sec-1 {
+    height: 100vh;
+    background-color: orange;
 }

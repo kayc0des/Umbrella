@@ -9,11 +9,25 @@ class BaseModel():
 
     def __init__(self, **kwargs):
         """Constructor method called when an instance of the BaseModel is created"""
-        self.id = uuid.uuid4()
-        self.created_at = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")
-        self.updated_at = self.created_at
 
-        if kwargs:
+        if not kwargs:
+            self.id = str(uuid.uuid4())
+            self.created_at = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")
+            self.updated_at = self.created_at
+        else:
+            if 'id' not in kwargs:
+                kwargs['id'] = str(uuid.uuid4())
+            if 'created_at' not in kwargs:
+                kwargs['created_at'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")
+            # else:
+            #     kwargs['created_at'] = datetime.datetime.strftime(kwargs['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
+            if 'updated_at' not in kwargs:
+                kwargs['updated_at'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")
+            # else:
+            #     kwargs['updated_at'] = datetime.datetime.strftime(kwargs['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
+            if '__class__' in kwargs:
+                del kwargs['__class__']
+            
             for key, value in kwargs.items():
                 setattr(self, key, value)
 
@@ -30,7 +44,7 @@ class BaseModel():
 
     def to_dict(self):
         bm_dict = self.__dict__
-        bm_dict['id'] = str(self.id)
+        bm_dict['id'] = self.id
         bm_dict['__class__'] = self.__class__.__name__
         return bm_dict
     
@@ -39,11 +53,5 @@ class BaseModel():
         pass
     
 # Debug
-model = BaseModel(name='test', use='debug')
+model = BaseModel(id = '12fcb22b-4221-4802-932a-ed486d4271e0', created_at = '2023-10-08T12:43:56.460601', updated_at = '2023-10-08T12:43:56.460601', name = 'test2', use = 'debug', __class__ = 'BaseModel')
 model.save()
-
-model2 = BaseModel(name='test2', use='debug')
-check1 = model2.save()
-
-check2 = storage.reload()
-print(check1 == check2)
