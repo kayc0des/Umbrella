@@ -13,16 +13,122 @@ body, input {
     font-family: 'Montserrat', sans-serif;
 }
 
+html {
+    scroll-behavior: smooth;
+    transition: all 300ms ease;
+}
+.container {
+    width: 100%;
+}
+
+.container .navbar {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+    height: 4rem;
+    background: #663399;
+    gap: 2rem;
+    z-index: 500;
+    position: fixed;
+    width: 100vw;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    border: 0;
+}
+
+.mobile-nav-toggle {
+    display: none;
+}
+
+.container .navbar .logo img {
+    margin: 2rem;
+    width: 7rem;
+}
+
+.container .navbar nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.container .navbar nav ul a {
+    text-decoration: none;
+    color: white;
+    margin-inline: 1rem;
+}
+
+@media (max-width: 55em) {
+    .primary-navigation {
+        position: fixed;
+        z-index: 1000;
+        inset: 0 0 0 30%;
+        flex-direction: column;
+        padding: min(30vh, 10rem) 2rem;
+        background-color: hsl(0, 0%, 0%, 0.5);
+        transform: translateX(100%);
+        transition: transform 350ms ease-out;
+    }
+
+    .primary-navigation[data-visible="true"] {
+        transform: translateX(0%);
+    }
+
+    .mobile-nav-toggle {
+        display: block;
+        position: absolute;
+        z-index: 9999;
+        background: url(../static/asset/img/menu.svg);
+        background-repeat: no-repeat;
+        width: 2rem;
+        border: 0;
+        aspect-ratio: 1;
+        top: 2rem;
+        right: 2rem;
+    }
+
+    .mobile-nav-toggle[aria-expanded="true"] {
+        background: url(../static/asset/img/close.svg);
+        background-repeat: no-repeat;
+    }
+}
+
+@media (min-width: 55em) {
+    .primary-navigation {
+        padding-block: 2rem;
+        padding-inline: clamp(3rem, 7vw, 10rem);
+    }
+}
+
+@supports (backdrop-filter: blur(1rem)) {
+    .primary-navigation {
+        background-color: hsl(0, 0%, 100%, 0.1);
+        backdrop-filter: blur(1rem);
+    }
+}
+
+.section {
+    height: 100vh;
+}
+
 .hero {
     background-color: #663399;
-    height: 100vh;
+    z-index: 0;
 }
 
 .nav-item .nav-link {
     color: white;
 }
 
-.sec-1 {
-    height: 100vh;
-    background-color: orange;
+.docs {
+    background-image: url(../static/asset/img/house.jpg);
+    background-size: cover;
+    background-position: center;
 }
