@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;600;800&display=swap');
+
+/* When an element has a "border-box" box-sizing, its padding and border widths are included in its total 
+width and height, ensuring that the element's content remains a consistent size regardless of padding and border settings.s */
+
+:root {
+    --color-primary: #663399;
+    --color-secondary: #ec5c24;
+}
+
+*, *::before, *::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body, input, a {
+    font-family: 'Montserrat', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+    transition: all 300ms ease;
+}
+.container {
+    width: 100%;
+}
+
+.docs {
+    background-image: url(../static/asset/img/house.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100vh;
+    z-index: 1;
+}
+
+.docs::before,
+.fraction::before {
+    content: "";
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the last value (0.1) to control the opacity of the overlay */
+    z-index: 0;/* Place the overlay behind the content */
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.centered-text {
+    text-align: center;
+    margin-bottom: 15rem;
+    z-index: 5;
+    font-size: 1.5rem;
+    color: white;
+}
+
+
+.docs .docs-btn,
+.fraction .fraction-btn {
+    width: 90vw;
+    margin-bottom: 2rem;
+    z-index: 10;
+}
+
+
+.docs .docs-btn button,
+.fraction .fraction-btn button {
+    width: 90vw;
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+    background: transparent;
+    border: 1px solid white;
+}
+
+.docs .docs-btn button:first-child:hover,
+.fraction .fraction-btn button:first-child:hover {
+    background: black;
+    border: 1px solid black;
+}
+
+.docs .docs-btn button:last-child,
+.fraction .fraction-btn button:last-child {
+    background: #663399;
+    border: 1px solid #663399;
+}
+
+.docs .docs-btn button:last-child:hover,
+.fraction .fraction-btn button:hover {
+    background: var(--color-secondary);
+    border: 1px solid var(--color-secondary);
+}
+
+.docs .docs-btn button a[href="docs.html"],
+.fraction .fraction-btn button a[target="_blank"] {
+    text-decoration: none;
+    background-color: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.docs .docs-btn button a[href="about.html"],
+.fraction .fraction-btn button a[href="properties.html"] {
+    text-decoration: none;
+    background-color: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.fraction {
+    background-image: url(../static/asset/img/keys.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100vh;
+}
+

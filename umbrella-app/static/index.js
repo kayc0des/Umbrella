@@ -52,9 +52,9 @@ function handleKeyDown(e) {
     }
 }
 
-function scrollToSection(sectionIndex) {
-    window.scrollTo({
-        top: sections[sectionIndex].offsetTop,
-        behavior: 'smooth'
-    });
-}
+// function scrollToSection(sectionIndex) {
+//     window.scrollTo({
+//         top: sections[sectionIndex].offsetTop,
+//         behavior: 'smooth'
+//     });
+// }

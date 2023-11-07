@@ -3,13 +3,18 @@
 /* When an element has a "border-box" box-sizing, its padding and border widths are included in its total 
 width and height, ensuring that the element's content remains a consistent size regardless of padding and border settings.s */
 
+:root {
+    --color-primary: #663399;
+    --color-secondary: #ec5c24;
+}
+
 *, *::before, *::after {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
 
-body, input {
+body, input, a {
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -125,10 +130,4 @@ html {
 
 .nav-item .nav-link {
     color: white;
-}
-
-.docs {
-    background-image: url(../static/asset/img/house.jpg);
-    background-size: cover;
-    background-position: center;
 }
