@@ -51,10 +51,24 @@ html {
 
 .centered-text {
     text-align: center;
-    margin-bottom: 15rem;
+    margin-bottom: 10rem;
     z-index: 5;
     font-size: 1.5rem;
     color: white;
+}
+
+.centered-text div {
+    margin: 2rem auto;
+    width: 30vw;
+    font-size: 1rem;
+    color: white;
+}
+
+.centered-text div hr {
+    width: 5vw;
+    margin: auto;
+    background-color: white;
+    height: 0.5rem;
 }
 
 
