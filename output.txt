@@ -1,0 +1,70 @@
+.
+├── README.md
+├── __init__.py
+├── output.txt
+├── requirements.txt
+├── run.py
+└── umbrella-app
+    ├── __init__.py
+    ├── console.py
+    ├── consoleTest.py
+    ├── flask_tutorial
+    │   └── server.py
+    ├── models
+    │   ├── README.md
+    │   ├── __init__.py
+    │   ├── __pycache__
+    │   │   ├── __init__.cpython-311.pyc
+    │   │   └── basemodel.cpython-311.pyc
+    │   ├── basemodel.py
+    │   ├── engine
+    │   │   ├── __init__.py
+    │   │   ├── __pycache__
+    │   │   │   ├── __init__.cpython-311.pyc
+    │   │   │   └── file_storage.cpython-311.pyc
+    │   │   ├── file_storage.py
+    │   │   ├── playground.py
+    │   │   └── storage.json
+    │   ├── playground.py
+    │   ├── property.py
+    │   ├── storage.json
+    │   ├── transaction.py
+    │   └── user.py
+    ├── static
+    │   ├── README.md
+    │   ├── admin-app.js
+    │   ├── adminstyle.css
+    │   ├── app.js
+    │   ├── asset
+    │   │   ├── img
+    │   │   │   ├── close.svg
+    │   │   │   ├── couple.jpg
+    │   │   │   ├── hamburger-menu.svg
+    │   │   │   ├── house.jpg
+    │   │   │   ├── img1.png
+    │   │   │   ├── kay.jpeg
+    │   │   │   ├── keys.jpg
+    │   │   │   ├── logo-white.png
+    │   │   │   ├── logo.png
+    │   │   │   ├── menu-svgrepo.svg
+    │   │   │   └── menu.svg
+    │   │   ├── js
+    │   │   │   └── scroll.js
+    │   │   └── videos
+    │   │       └── hero.mp4
+    │   ├── index.js
+    │   ├── indexstyle.css
+    │   ├── loginstyle.css
+    │   ├── properties.js
+    │   └── sectionstyles.css
+    ├── storage.json
+    ├── templates
+    │   ├── README.md
+    │   ├── admin.html
+    │   ├── index.html
+    │   └── login.html
+    └── utils
+        ├── README.md
+        └── __init__.py
+
+14 directories, 54 files

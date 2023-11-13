@@ -1,4 +1,4 @@
-import basemodel
+from basemodel import BaseModel
 
-class User():
+class User(BaseModel):
     pass

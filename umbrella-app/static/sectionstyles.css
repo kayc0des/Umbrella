@@ -39,7 +39,8 @@ html {
 }
 
 .docs::before,
-.fraction::before {
+.fraction::before,
+.start::before {
     content: "";
     position: absolute;
     background-color: rgba(0, 0, 0, 0.5); /* Adjust the last value (0.1) to control the opacity of the overlay */
@@ -51,7 +52,7 @@ html {
 
 .centered-text {
     text-align: center;
-    margin-bottom: 10rem;
+    margin-bottom: 8rem;
     z-index: 5;
     font-size: 1.5rem;
     color: white;
@@ -73,7 +74,8 @@ html {
 
 
 .docs .docs-btn,
-.fraction .fraction-btn {
+.fraction .fraction-btn,
+.start .start-btn {
     width: 90vw;
     margin-bottom: 2rem;
     z-index: 10;
@@ -81,7 +83,8 @@ html {
 
 
 .docs .docs-btn button,
-.fraction .fraction-btn button {
+.fraction .fraction-btn button,
+.start .start-btn button {
     width: 90vw;
     padding: 0.75rem;
     margin-bottom: 0.5rem;
@@ -90,25 +93,29 @@ html {
 }
 
 .docs .docs-btn button:first-child:hover,
-.fraction .fraction-btn button:first-child:hover {
+.fraction .fraction-btn button:first-child:hover,
+.start .start-btn button:first-child:hover {
     background: black;
     border: 1px solid black;
 }
 
 .docs .docs-btn button:last-child,
-.fraction .fraction-btn button:last-child {
+.fraction .fraction-btn button:last-child,
+.start .start-btn button:last-child {
     background: #663399;
     border: 1px solid #663399;
 }
 
 .docs .docs-btn button:last-child:hover,
-.fraction .fraction-btn button:hover {
+.fraction .fraction-btn button:hover,
+.start .start-btn button:hover {
     background: var(--color-secondary);
     border: 1px solid var(--color-secondary);
 }
 
 .docs .docs-btn button a[href="docs.html"],
-.fraction .fraction-btn button a[target="_blank"] {
+.fraction .fraction-btn button a[target="_blank"],
+.start .start-btn button a[href="support.html"] {
     text-decoration: none;
     background-color: none;
     color: white;
@@ -117,7 +124,8 @@ html {
 }
 
 .docs .docs-btn button a[href="about.html"],
-.fraction .fraction-btn button a[href="properties.html"] {
+.fraction .fraction-btn button a[href="properties.html"],
+.start .start-btn button a[href="login.html"] {
     text-decoration: none;
     background-color: none;
     color: white;
@@ -136,3 +144,23 @@ html {
     height: 100vh;
 }
 
+.start {
+    background-image: url(../static/asset/img/couple.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    height: 100vh;
+}
+
+@media (max-width: 55em) {
+    .centered-text {
+        font-size: 1rem;
+        margin-bottom: 15rem;
+    }
+    .centered-text div {
+        display: none;
+    }
+}

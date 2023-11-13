@@ -1,6 +1,6 @@
 import uuid
 import datetime
-from engine.file_storage import FileStorage
+from .engine.file_storage import FileStorage
 
 storage = FileStorage()
 
@@ -55,3 +55,6 @@ class BaseModel():
 # Debug
 model = BaseModel(id = '12fcb22b-4221-4802-932a-ed486d4271e0', created_at = '2023-10-08T12:43:56.460601', updated_at = '2023-10-08T12:43:56.460601', name = 'test2', use = 'debug', __class__ = 'BaseModel')
 model.save()
+
+kayModel = BaseModel()
+kayModel.save()
