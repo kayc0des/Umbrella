@@ -1,6 +1,6 @@
 import uuid
 import datetime
-from .engine.file_storage import FileStorage
+from engine.file_storage import FileStorage
 
 storage = FileStorage()
 
