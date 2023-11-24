@@ -21,11 +21,11 @@
    */
 
   --dark-jungle-green: hsl(188, 63%, 7%);
-  --prussian-blue: hsl(200, 69%, 14%);
+  --prussian-blue: #663399;
   --raisin-black-1: hsl(227, 29%, 13%);
   --raisin-black-2: hsl(229, 17%, 19%);
   --yellow-green: hsl(89, 72%, 45%);
-  --orange-soda: hsl(9, 100%, 62%);
+  --orange-soda: #ec5c24;
   --cultured-1: hsl(0, 0%, 93%);
   --cultured-2: hsl(192, 24%, 96%);
   --misty-rose: hsl(7, 56%, 91%);
@@ -983,7 +983,7 @@ button, a { transition: var(--transition); }
 \*-----------------------------------*/
 
 .cta {
-  background: linear-gradient(to bottom, var(--white) 50%, var(--raisin-black-1) 50%);
+  background: linear-gradient(to bottom, var(--white) 50%, var(--prussian-blue) 50%);
 }
 
 .cta-card {
@@ -1038,7 +1038,7 @@ button, a { transition: var(--transition); }
 \*-----------------------------------*/
 
 .footer {
-  background: var(--raisin-black-1);
+  background: var(--prussian-blue);
   color: var(--white);
   margin-bottom: 68px;
 }
@@ -1107,7 +1107,7 @@ button, a { transition: var(--transition); }
 .footer-link:is(:hover, :focus) { color: var(--orange-soda); }
 
 .footer-bottom {
-  background: var(--raisin-black-2);
+  background: #ec5c24;
   padding-block: 25px;
 }
 

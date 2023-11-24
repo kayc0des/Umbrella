@@ -1,52 +1,32 @@
-# playground file
-
-fruits = ['apple', 'avocado', 'banana', 'cherry']
-
-for fruit in fruits:
-    print(fruit)
-
-fruitList = [fruit for fruit in fruits if 'a' in fruit]
-print(fruitList)
-
-myDict = {'name':'John', 'age':40, 'gender':'male'}
-
-for key, value in myDict.items():
-    print(f"{key} = {value}")
-
-# *args and **kwargs
-# write a function to multiply two numbers
-
-def multiply(num1, num2):
-    return num1 * num2
-
-print(multiply(10, 9))
-
-def multiplyFunc(*args):
-    result = 1
-    if args:
-        for arg in args:
-            result *= arg
-        return result
-    else:
-        result = 0
-        return result
-
-print(multiplyFunc(3, 4, 5))
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+from sqlalchemy import ForeignKey, Text, String
+from typing import List
 
 
-class User():
+class Base(DeclarativeBase):
+    pass
 
-    def __init__(self, **kwargs):
-        self.id = 89
-        allowed_keys = {'name', 'email', 'username', 'location'} # Using a set because sets hold unique values which cannot be repeated
-        if kwargs:
-            #self.__dict__.update(kwargs)
-            self.__dict__.update((key, value) for key, value in kwargs.items() if key in allowed_keys)
-            
-            #for key, value in kwargs.items():
-            #    setattr(self, key, value)
+class User(Base):
+
+    __tablename__ = 'users'
+
+    id:Mapped[int] = mapped_column(primary_key=True)
+    username:Mapped[str] = mapped_column(String(length=50), nullable=False)
+    email:Mapped[str] = mapped_column(String(length=255), nullable=False)
+    message:Mapped[List["Message"]] = relationship(back_populates='user')
+
+    def __repr__(self) -> str:
+        return f"<User username={self.username}>"
 
 
-user1 = User(name = 'Foo', lastName = 'Bar')
-print(user1.name)
-print(user1.__dict__)
+class Message(Base):
+
+    __tablename__ = 'messages'
+    
+    id:Mapped[int] = mapped_column(primary_key=True)
+    user_id:Mapped[int] = mapped_column(ForeignKey('users.id'), nullable=False)
+    text:Mapped[str] = mapped_column(Text, nullable=False)
+    user:Mapped["User"] = relationship(back_populates='messages')
+
+    def __repr__(self) -> str:
+        return f"<comment text={self.text} by {self.user.username}>"

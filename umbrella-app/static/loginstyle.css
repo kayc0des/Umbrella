@@ -25,7 +25,6 @@ main{
     max-width: 1020px;
     height: 640px;
     background-color: white;
-    border-radius: 3.3rem;
     box-shadow: 0 60px 40px -30px rgba(0,0, 0, 0.27);
 }
 
@@ -153,7 +152,6 @@ label {
     color: #fff;
     border: none;
     cursor: pointer;
-    border-radius: 0.8rem;
     font-size: .8rem;
     margin-bottom: 2rem;
     transition: 0.3s;
@@ -202,7 +200,6 @@ main.sign-up-mode .carousel {
     left: 45%;
     top: 0;
     background-color: #e0d1ef;
-    border-radius: 2rem;
     display: grid;
     grid-template-rows: auto 1fr;
     padding: 2rem;
