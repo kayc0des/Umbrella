@@ -39,7 +39,7 @@
                         </div>
                     </form>
 
-                    <form action="login.html" autocomplete="off" class="sign-up-form">
+                    <form action="{{ url_for('submit_user') }}" method="post" autocomplete="off" class="sign-up-form">
                         <div class="logo">
                             <img src="../static/asset/img/logo.png" alt="umbrella">
                         </div>
@@ -52,18 +52,18 @@
 
                         <div class="actual-form">
                             <div class="input-wrap">
-                                <input type="name" minlength="3" class="input-field" required/>
-                                <label>First Name</label>
+                                <input name="first_name" type="name" minlength="3" class="input-field" required/>
+                                <label for="first_name">First Name</label>
                             </div>
 
                             <div class="input-wrap">
-                                <input type="name" minlength="3" class="input-field" required/>
-                                <label>Last Name</label>
+                                <input name="last_name" type="name" minlength="3" class="input-field" required/>
+                                <label for="last_name">Last Name</label>
                             </div>
 
                             <div class="input-wrap">
-                                <input type="email" class="input-field" required/>
-                                <label>Email</label>
+                                <input name="email" type="email" class="input-field" required/>
+                                <label for="email">Email</label>
                             </div>
 
                             <div class="input-wrap">
@@ -71,10 +71,6 @@
                                 <label>Password</label>
                             </div>
                             
-                            <!-- <div class="input-wrap">
-                                <input type="password" minlength="4" autocomplete="off" class="input-field" required/>
-                                <label>Repeat Password</label>
-                            </div> -->
 
                             <input type="submit" value="Sign Up" class="sign-btn">
                             <p class="text">
@@ -86,7 +82,7 @@
                 </div>
                 <div class="carousel">
                     <div class="images-wrapper">
-                        <img src="./assets/images/hero-banner.png" alt="images" class="image img-1 show">
+                        <img src="../static/assets/images/hero-banner.png" alt="images" class="image img-1 show">
                         <img src="../static/asset/img/img1.pn" alt="images" class="image img-2">
                         <img src="../static/asset/img/img1.pn" alt="images" class="image img-3">
                     </div>

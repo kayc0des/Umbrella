@@ -1,6 +1,6 @@
 import cmd
 import json
-from models.basemodel import BaseModel
+from models.basemodel import Base
 
 class UmbrellaCommand(cmd.Cmd):
     """ Console definiton for Umbrella"""
