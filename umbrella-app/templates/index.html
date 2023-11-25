@@ -145,7 +145,7 @@
               </li>
 
               <li>
-                <a href="{{ url_for('login') }}" class="navbar-link" data-nav-link>Login</a>
+                <a href="{{ url_for('login') }}" class="navbar-link" data-nav-link>Contact</a>
               </li>
 
             </ul>
@@ -172,34 +172,17 @@
 
               <!-- Logout button with Material Icon -->
               <a href="{{ url_for('logout') }}" title="Logout">
-                <span style="color: black;" class="material-symbols-outlined icon">logout</span>
-                <p class="icon-text" style="color: black;">Logout</p>
+                <span class="material-symbols-outlined icon">logout</span>
               </a>
 
               {% else %}
                 <!-- Show "Create an account" link if not logged in -->
-                <a href="{{ url_for('login') }}" title="Login">
+                <a class="author-title" href="{{ url_for('login') }}" title="Login">
                   <span class="material-symbols-outlined icon">account_circle</span>
-                  My Account
                 </a>
               {% endif %}
 
               </div>
-              <!-- <div class="card-author">
-
-                <figure class="author-avatar">
-                  <img src="../static/assets/images/author.jpg" alt="William Seklo" class="w-100">
-                </figure>
-
-                <div>
-                  <p class="author-name">
-                    <a href="portfolio.html">William Seklo</a>
-                  </p>
-
-                  <p class="author-title">View Portfolio</p>
-                </div>
-
-              </div> -->
 
           <button class="header-bottom-actions-btn" data-nav-open-btn aria-label="Open Menu">
             <ion-icon name="menu-outline"></ion-icon>
