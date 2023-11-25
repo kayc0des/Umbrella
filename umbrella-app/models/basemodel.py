@@ -8,14 +8,12 @@ from typing import List
 
 storage = FileStorage()
 
+
 class Base(DeclarativeBase):
     """BaseModel Class for all umbrella Data Models"""
 
-
     def __init__(self, **kwargs):
         """Constructor method called when an instance of the BaseModel is created"""
-
-        
 
         if not kwargs:
             self.id = str(uuid.uuid4())
@@ -26,15 +24,11 @@ class Base(DeclarativeBase):
                 kwargs['id'] = str(uuid.uuid4())
             if 'created_at' not in kwargs:
                 kwargs['created_at'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")
-            # else:
-            #     kwargs['created_at'] = datetime.datetime.strftime(kwargs['created_at'], '%Y-%m-%dT%H:%M:%S.%f')
             if 'updated_at' not in kwargs:
                 kwargs['updated_at'] = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S.%f")
-            # else:
-            #     kwargs['updated_at'] = datetime.datetime.strftime(kwargs['updated_at'], '%Y-%m-%dT%H:%M:%S.%f')
             if '__class__' in kwargs:
                 del kwargs['__class__']
-            
+
             for key, value in kwargs.items():
                 setattr(self, key, value)
 
@@ -64,7 +58,7 @@ class User(Base):
 
     __tablename__ = 'users'
 
-    id:Mapped[int] = mapped_column(primary_key=True)
+    id:Mapped[str] = mapped_column(String(length=50), primary_key=True)
     username:Mapped[str] = mapped_column(String(length=50), nullable=False)
     email:Mapped[str] = mapped_column(String(length=255), nullable=False)
     message:Mapped[List["Message"]] = relationship(back_populates='user')
@@ -77,10 +71,10 @@ class Message(Base):
 
     __tablename__ = 'messages'
     
-    id:Mapped[int] = mapped_column(primary_key=True)
+    id:Mapped[str] = mapped_column(String(length=50), primary_key=True)
     user_id:Mapped[int] = mapped_column(ForeignKey('users.id'), nullable=False)
     text:Mapped[str] = mapped_column(Text, nullable=False)
-    user:Mapped["User"] = relationship(back_populates='messages')
+    user:Mapped["User"] = relationship(back_populates='message')
 
     def __repr__(self) -> str:
         return f"<comment text={self.text} by {self.user.username}>"
