@@ -1,8 +1,11 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from basemodel import User
-from persisting import session
+from persisting import session as db_session
 
 app = Flask(__name__)
+
+#randomly generated separet key using os.urandom(24)
+app.secret_key = b"\xc7\xd3\xe8\xee\x95\x17\xe6\xea\t\x0c\xb9C\x92\xb4D\x16\xff#\xe8\xad\xea}AA"
 
 def configure_views(app):
     @app.route('/')
@@ -12,6 +15,16 @@ def configure_views(app):
     @app.route('/login')
     def login():
         return render_template('login.html')
+    
+    @app.route('/portfolio')
+    def portfolio():
+        return render_template('portfolio.html')
+    
+    @app.route('/logout')
+    def logout():
+        # Clear the session data
+        session.clear()
+        return redirect(url_for('index'))  # Redirect to the login page after logout
 
     @app.route('/submit_user', methods=['POST'])
     def submit_user():
@@ -24,8 +37,12 @@ def configure_views(app):
         user = User(username=f"{first_name} {last_name}", email=email)
 
         # Save the user to the database
-        session.add(user)
-        session.commit()
+        db_session.add(user)
+        db_session.commit()
+
+        # Store user information in session
+        session['user_id'] = user.id
+        session['username'] = user.username
 
         # Redirect to the 'index' endpoint after form submission
         return redirect(url_for('index'))

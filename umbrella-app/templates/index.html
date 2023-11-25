@@ -25,6 +25,11 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
     rel="stylesheet">
+
+  <!-- Material Icons-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
 </head>
 
 <body>
@@ -152,6 +157,36 @@
         
             <div class="card-author">
 
+              {% if 'user_id' in session %}
+              <figure class="author-avatar">
+                  <!-- Add the image source for the user avatar -->
+                  <img src="../static/assets/images/author.jpg" alt="{{ session['username'] }}" class="w-100">
+              </figure>
+              <div>
+                  <p class="author-name">
+                      <!-- Display the username instead of a link to the portfolio -->
+                      <a href="{{ url_for('portfolio') }}">{{ session['username'] }}</a>
+                  </p>
+                  <p class="author-title">View Portfolio</p>
+              </div>
+
+              <!-- Logout button with Material Icon -->
+              <a href="{{ url_for('logout') }}" title="Logout">
+                <span style="color: black;" class="material-symbols-outlined icon">logout</span>
+                <p class="icon-text" style="color: black;">Logout</p>
+              </a>
+
+              {% else %}
+                <!-- Show "Create an account" link if not logged in -->
+                <a href="{{ url_for('login') }}" title="Login">
+                  <span class="material-symbols-outlined icon">account_circle</span>
+                  My Account
+                </a>
+              {% endif %}
+
+              </div>
+              <!-- <div class="card-author">
+
                 <figure class="author-avatar">
                   <img src="../static/assets/images/author.jpg" alt="William Seklo" class="w-100">
                 </figure>
@@ -164,7 +199,7 @@
                   <p class="author-title">View Portfolio</p>
                 </div>
 
-              </div>
+              </div> -->
 
           <button class="header-bottom-actions-btn" data-nav-open-btn aria-label="Open Menu">
             <ion-icon name="menu-outline"></ion-icon>
