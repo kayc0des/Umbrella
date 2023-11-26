@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_bcrypt import Bcrypt
-from model.basemodel import User, Property
-from model.persisting import session as db_session
+# from model.basemodel import User, Property
+# from model.persisting import session as db_session
+
+from basemodel import User, Property, Admin
+from persisting import session as db_session
 
 app = Flask(__name__)
 
@@ -21,6 +24,10 @@ def configure_views(app):
     
     @app.route('/admin')
     def admin():
+        return render_template('adminlogin.html')
+    
+    @app.route('/adminpanel')
+    def adminpanel():
         return render_template('admin.html')
     
     @app.route('/addproperty')
@@ -81,6 +88,9 @@ def configure_views(app):
         db_session.add(new_property)
         db_session.commit()
 
+        # Redirect to the 'index' endpoint after form submission
+        return redirect(url_for('addproperty'))
+
     
     @app.route('/signin', methods=['POST'])
     def signin():
@@ -102,6 +112,27 @@ def configure_views(app):
         else:
             # Handle incorrect login credentials (e.g., show an error message)
             return render_template('login.html', error='Invalid email or password')
+        
+    @app.route('/admin', methods=['POST'])
+    def adminlogin():
+        # Get data from the form
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        # Query the database to find the user by email
+        admin = db_session.query(Admin).filter_by(email=email, password=password).first()
+
+        # Check if the user exists and the password is correct
+        if admin:
+            # Set user-related information in the session
+            session['user_id'] = admin.id
+            session['username'] = admin.username
+
+            # Redirect to the desired page after login (e.g., user's portfolio)
+            return redirect(url_for('adminpanel'))
+        else:
+            # Handle incorrect login credentials (e.g., show an error message)
+            return render_template('adminlogin.html', error='Invalid email or password')
     
 configure_views(app)
     
