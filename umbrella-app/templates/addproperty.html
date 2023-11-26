@@ -22,11 +22,11 @@
             </div>
 
             <div class="sidebar">
-                <a href="{{ url_for('admin') }}" class="active">
+                <a href="{{ url_for('admin') }}">
                     <span class="material-symbols-outlined">dashboard</span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="{{ url_for('addproperty') }}">
+                <a href="{{ url_for('addproperty') }}" class="active">
                     <span class="material-symbols-outlined">apartment</span>
                     <h3>Properties</h3>
                 </a>
@@ -60,9 +60,9 @@
         <!--------------- END OF ASIDE --------------->
 
         <main>
-            <h1>Dashboard</h1>
+            <h1>Properties</h1>
 
-            <div class="date">
+            <!-- <div class="date">
                 <input type="date">
             </div>
 
@@ -91,10 +91,46 @@
                     </div>
                 </div>
             </div>
-            <!--------------- END OF INSIGHTS --------------->
+            ------------- END OF INSIGHTS ------------- -->
 
             <div class="all-properties">
-                <h2>All Properties</h2>
+                <form action="{{ url_for('add_property') }}" method="post" autocomplete="off" class="sign-up-form">
+                    <div class="actual-form">
+                        <div class="input-wrap">
+                            <input name="name" type="name" minlength="3" class="input-field" required/>
+                            <label for="name">Name</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input name="description" type="name" minlength="3" class="input-field" required/>
+                            <label for="description">Decription</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input name="price" type="number" class="input-field" required/>
+                            <label for="price">Price</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input name="fractions" type="number" minlength="4" autocomplete="off" class="input-field" required/>
+                            <label for="fractions">Fractions</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input name="status" type="email" class="input-field" required/>
+                            <label for="status">Status</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input name="images" type="file" accept="image/*" class="input-field" multiple required/>
+                            <label for="images"></label>
+                        </div>
+                        
+
+                        <input type="submit" value="Add Property" class="sign-btn">
+                    </div>
+                </form>
+                <!-- <h2>All Properties</h2>
                 <table>
                     <thead>
                         <tr>
@@ -107,18 +143,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- <tr>
+                         <tr>
                             <td>Lorem Ispum</td>
                             <td>File Upload</td>
                             <td>Research Paper</td>
                             <td>Lorem ispum dolor sit amet</td>
                             <td>Open</td>
                             <td>30-10-2023</td>
-                        </tr> -->
+                        </tr> 
                     </tbody>
                 </table>
                 <a href="#">Show All</a>
-            </div>
+            </div> -->
         </main>
 
         <div class="right">
@@ -215,5 +251,6 @@
 
     <script src="../static/properties.js"></script>
     <script src="../static/admin-app.js"></script>
+    <script src="../static/app.js"></script>
 </body>
 </html>

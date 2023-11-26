@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_bcrypt import Bcrypt
-from model.basemodel import User
+from model.basemodel import User, Property
 from model.persisting import session as db_session
 
 app = Flask(__name__)
@@ -19,6 +19,14 @@ def configure_views(app):
     def login():
         return render_template('login.html')
     
+    @app.route('/admin')
+    def admin():
+        return render_template('admin.html')
+    
+    @app.route('/addproperty')
+    def addproperty():
+        return render_template('addproperty.html')
+
     @app.route('/portfolio')
     def portfolio():
         return render_template('portfolio.html')
@@ -53,6 +61,26 @@ def configure_views(app):
 
         # Redirect to the 'index' endpoint after form submission
         return redirect(url_for('index'))
+    
+    @app.route('/add_property', methods=['POST'])
+    def add_property():
+        # Get data from the form
+        name = request.form.get('name')
+        description = request.form.get('description')
+        price = request.form.get('price')
+        fractions = request.form.get('fractions')
+        status = request.form.get('status')
+        images = request.form.get('images')
+
+        new_property = Property(name=name, description=description, price=price, fractions=fractions,
+                            status=status, images=images)
+        
+        new_property.fraction_price()
+
+        # Save the property to the database
+        db_session.add(new_property)
+        db_session.commit()
+
     
     @app.route('/signin', methods=['POST'])
     def signin():

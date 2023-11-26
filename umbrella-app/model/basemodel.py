@@ -80,8 +80,23 @@ class Message(Base):
     def __repr__(self) -> str:
         return f"<comment text={self.text} by {self.user.username}>"
     
-
+class Property(Base):
     
+    __tablename__ = 'properties'
+
+    id:Mapped[str] = mapped_column(String(length=50), primary_key=True)
+    name:Mapped[str] = mapped_column(String(length=50), nullable=False)
+    description:Mapped[str] = mapped_column(String(length=1000), nullable=False)
+    price:Mapped[float] = mapped_column(nullable=False)
+    fractions:Mapped[int] = mapped_column(nullable=False)
+    fraction_price:Mapped[float] = mapped_column(nullable=False)
+    status:Mapped[str] = mapped_column(String(length=50), nullable=False)
+    images:Mapped[str] = mapped_column(Text, nullable=False)
+    created_at:Mapped[str] = mapped_column(String(length=50), nullable=False) 
+
+    def fraction_price(self):
+        return float(self.price) / int(self.fraction)
+
 
 # Debug
 # model = BaseModel(id = '12fcb22b-4221-4802-932a-ed486d4271e0', created_at = '2023-10-08T12:43:56.460601', updated_at = '2023-10-08T12:43:56.460601', name = 'test2', use = 'debug', __class__ = 'BaseModel')
