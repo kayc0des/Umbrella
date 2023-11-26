@@ -1,11 +1,14 @@
 from flask import Flask, render_template, request, redirect, url_for, session
-from basemodel import User
-from persisting import session as db_session
+from flask_bcrypt import Bcrypt
+from model.basemodel import User
+from model.persisting import session as db_session
 
 app = Flask(__name__)
 
 #randomly generated separet key using os.urandom(24)
 app.secret_key = b"\xc7\xd3\xe8\xee\x95\x17\xe6\xea\t\x0c\xb9C\x92\xb4D\x16\xff#\xe8\xad\xea}AA"
+
+bcrypt = Bcrypt(app)
 
 def configure_views(app):
     @app.route('/')
@@ -32,9 +35,13 @@ def configure_views(app):
         first_name = request.form.get('first_name')
         last_name = request.form.get('last_name')
         email = request.form.get('email')
+        password = request.form.get('password')
+
+        # Hash the password
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
         # Create a User instance
-        user = User(username=f"{first_name} {last_name}", email=email)
+        user = User(username=f"{first_name} {last_name}", email=email, password=hashed_password)
 
         # Save the user to the database
         db_session.add(user)
@@ -46,6 +53,27 @@ def configure_views(app):
 
         # Redirect to the 'index' endpoint after form submission
         return redirect(url_for('index'))
+    
+    @app.route('/signin', methods=['POST'])
+    def signin():
+        # Get data from the form
+        email = request.form.get('email')
+        password = request.form.get('password')
+
+        # Query the database to find the user by email
+        user = db_session.query(User).filter_by(email=email).first()
+
+        # Check if the user exists and the password is correct
+        if user and bcrypt.check_password_hash(user.password, password):
+            # Set user-related information in the session
+            session['user_id'] = user.id
+            session['username'] = user.username
+
+            # Redirect to the desired page after login (e.g., user's portfolio)
+            return redirect(url_for('index'))
+        else:
+            # Handle incorrect login credentials (e.g., show an error message)
+            return render_template('login.html', error='Invalid email or password')
     
 configure_views(app)
     

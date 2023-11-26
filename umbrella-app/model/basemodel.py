@@ -61,6 +61,7 @@ class User(Base):
     id:Mapped[str] = mapped_column(String(length=50), primary_key=True)
     username:Mapped[str] = mapped_column(String(length=50), nullable=False)
     email:Mapped[str] = mapped_column(String(length=255), nullable=False)
+    password:Mapped[str] = mapped_column(String(length=255), nullable=False)
     message:Mapped[List["Message"]] = relationship(back_populates='user')
 
     def __repr__(self) -> str:
@@ -78,6 +79,8 @@ class Message(Base):
 
     def __repr__(self) -> str:
         return f"<comment text={self.text} by {self.user.username}>"
+    
+
     
 
 # Debug
