@@ -98,6 +98,7 @@ class Property(Base):
     id:Mapped[str] = mapped_column(String(length=50), primary_key=True)
     name:Mapped[str] = mapped_column(String(length=50), nullable=False)
     description:Mapped[str] = mapped_column(String(length=1000), nullable=False)
+    location:Mapped[str] = mapped_column(String(length=1000), nullable=False)
     price:Mapped[float] = mapped_column(nullable=False)
     fractions:Mapped[int] = mapped_column(nullable=False)
     fraction_price:Mapped[float] = mapped_column(nullable=False)

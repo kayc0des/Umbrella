@@ -1,5 +1,7 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, session
 from flask_bcrypt import Bcrypt
+from werkzeug.utils import secure_filename
 # from model.basemodel import User, Property
 # from model.persisting import session as db_session
 
@@ -13,10 +15,15 @@ app.secret_key = b"\xc7\xd3\xe8\xee\x95\x17\xe6\xea\t\x0c\xb9C\x92\xb4D\x16\xff#
 
 bcrypt = Bcrypt(app)
 
+# Function to fetch all properties from the database
+def get_properties():
+    return db_session.query(Property).all()
+
 def configure_views(app):
     @app.route('/')
     def index():
-        return render_template('index.html')
+        properties = get_properties()
+        return render_template('index.html', properties=properties)
 
     @app.route('/login')
     def login():
@@ -74,13 +81,25 @@ def configure_views(app):
         # Get data from the form
         name = request.form.get('name')
         description = request.form.get('description')
+        location = request.form.get('location')
         price = request.form.get('price')
         fractions = request.form.get('fractions')
         status = request.form.get('status')
-        images = request.form.get('images')
+        # images = request.form.get('images')
 
-        new_property = Property(name=name, description=description, price=price, fractions=fractions,
-                            status=status, images=images)
+        property_image = request.files['images']
+        if property_image.filename != '':
+            image_filename = secure_filename(property_image.filename)
+            image_path = os.path.join(app.static_folder, 'assets', 'propertyimages', image_filename)
+            property_image.save(image_path)
+            image_url = f"/static/assets/propertyimages/{image_filename}"
+        else:
+            image_url = None
+
+        images = image_url
+
+        new_property = Property(name=name, description=description, location=location,  price=price, fractions=fractions,
+                            status=status, images=image_url)
         
         new_property.fraction_price()
 

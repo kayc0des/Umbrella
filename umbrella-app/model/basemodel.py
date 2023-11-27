@@ -53,6 +53,17 @@ class Base(DeclarativeBase):
         
     #     pass
 
+class Admin(Base):
+
+    __tablename__ = 'admin'
+
+    id:Mapped[str] = mapped_column(String(length=50), primary_key=True)
+    username:Mapped[str] = mapped_column(String(length=50), nullable=False)
+    email:Mapped[str] = mapped_column(String(length=255), nullable=False)
+    password:Mapped[str] = mapped_column(String(length=255), nullable=False)
+
+    def __repr__(self) -> str:
+        return f"<User username={self.username}>"
 
 class User(Base):
 
