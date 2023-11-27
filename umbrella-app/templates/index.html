@@ -430,7 +430,27 @@
                             <img src="{{ property.images }}" alt="{{ property.name }}" class="w-100">
                         </a>
                         <div class="card-badge green">{{ property.status }}</div>
-                        <!-- ... (rest of your banner content) -->
+                        <div class="banner-actions">
+
+                          <button class="banner-actions-btn">
+                            <ion-icon name="location"></ion-icon>
+      
+                            <address>{{ property.location }}</address>
+                          </button>
+      
+                          <button class="banner-actions-btn">
+                            <ion-icon name="camera"></ion-icon>
+      
+                            <span>4</span>
+                          </button>
+      
+                          <button class="banner-actions-btn">
+                            <ion-icon name="film"></ion-icon>
+      
+                            <span>2</span>
+                          </button>
+      
+                        </div>
                     </figure>
                     <div class="card-content">
                         <div class="card-price">
