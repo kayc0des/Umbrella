@@ -15,7 +15,7 @@
   <!-- 
     - custom css link
   -->
-  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="../static/assets/css/style.css">
 
   <!-- 
     - google font link
@@ -25,6 +25,11 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap"
     rel="stylesheet">
+
+  <!-- Material Icons-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
 </head>
 
 <body>
@@ -99,7 +104,7 @@
       <div class="container">
 
         <a href="#" class="logo">
-          <img src="./assets/images/logo.png" alt="Umbrella logo" width="150px">
+          <img src="../static/assets/images/logo.png" alt="Umbrella logo" width="150px">
         </a>
 
         <nav class="navbar" data-navbar>
@@ -107,7 +112,7 @@
           <div class="navbar-top">
 
             <a href="#" class="logo">
-              <img src="./assets/images/logo.png" alt="Homeverse logo">
+              <img src="../static/assets/images/logo.png" alt="Homeverse logo">
             </a>
 
             <button class="nav-close-btn" data-nav-close-btn aria-label="Close Menu">
@@ -120,7 +125,7 @@
             <ul class="navbar-list">
 
               <li>
-                <a href="index.html" class="navbar-link" data-nav-link>Home</a>
+                <a href="#home" class="navbar-link" data-nav-link>Home</a>
               </li>
 
               <li>
@@ -132,7 +137,7 @@
               </li>
 
               <li>
-                <a href="property.html" class="navbar-link active" data-nav-link>Property</a>
+                <a href="{{ url_for('properties') }}" class="navbar-link" data-nav-link>Property</a>
               </li>
 
               <li>
@@ -140,7 +145,7 @@
               </li>
 
               <li>
-                <a href="#contact" class="navbar-link" data-nav-link>Contact</a>
+                <a href="{{ url_for('contact') }}" class="navbar-link" data-nav-link>Contact</a>
               </li>
 
             </ul>
@@ -152,17 +157,30 @@
         
             <div class="card-author">
 
-                <figure class="author-avatar">
-                  <img src="./assets/images/author.jpg" alt="William Seklo" class="w-100">
-                </figure>
-
-                <div>
+              {% if 'user_id' in session %}
+              <figure class="author-avatar">
+                  <!-- Add the image source for the user avatar -->
+                  <img src="../static/assets/images/author.jpg" alt="{{ session['username'] }}" class="w-100">
+              </figure>
+              <div>
                   <p class="author-name">
-                    <a href="portfolio.html">William Seklo</a>
+                      <!-- Display the username instead of a link to the portfolio -->
+                      <a href="{{ url_for('portfolio') }}">{{ session['username'] }}</a>
                   </p>
-
                   <p class="author-title">View Portfolio</p>
-                </div>
+              </div>
+
+              <!-- Logout button with Material Icon -->
+              <a href="{{ url_for('logout') }}" title="Logout">
+                <span class="material-symbols-outlined icon">logout</span>
+              </a>
+
+              {% else %}
+                <!-- Show "Create an account" link if not logged in -->
+                <a class="author-title" href="{{ url_for('login') }}" title="Login">
+                  <span class="material-symbols-outlined icon">account_circle</span>
+                </a>
+              {% endif %}
 
               </div>
 
@@ -183,493 +201,85 @@
 
 
 
-  <main>  
+  <main>
+    <article>
       <!-- 
         - #PROPERTY
       -->
 
-    <section class="property" id="property">
+      <section class="property" id="property">
         <div class="container">
 
+          <p class="section-subtitle">Properties</p>
+
+          <h2 class="h2 section-title">Featured Listings</h2>
+
           <ul class="property-list has-scrollbar">
-
+            {% for property in properties %}
             <li>
-              <div class="property-card">
+                <div class="property-card">
+                    <figure class="card-banner">
+                        <a href="#">
+                            <!-- Assuming you have a field 'images' which is a string of image URLs -->
+                            <img src="{{ property.images }}" alt="{{ property.name }}" class="w-100">
+                        </a>
+                        <div class="card-badge green">{{ property.status }}</div>
+                        <div class="banner-actions">
 
-                <figure class="card-banner">
-
-                  <a href="#">
-                    <img src="./assets/images/property-1.jpg" alt="New Apartment Nice View" class="w-100">
-                  </a>
-
-                  <div class="card-badge green">For Rent</div>
-
-                  <div class="banner-actions">
-
-                    <button class="banner-actions-btn">
-                      <ion-icon name="location"></ion-icon>
-
-                      <address>Belmont Gardens, Chicago</address>
-                    </button>
-
-                    <button class="banner-actions-btn">
-                      <ion-icon name="camera"></ion-icon>
-
-                      <span>4</span>
-                    </button>
-
-                    <button class="banner-actions-btn">
-                      <ion-icon name="film"></ion-icon>
-
-                      <span>2</span>
-                    </button>
-
-                  </div>
-
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="card-price">
-                    <strong>$34,900</strong>/Month
-                  </div>
-
-                  <h3 class="h3 card-title">
-                    <a href="#">New Apartment Nice View</a>
-                  </h3>
-
-                  <p class="card-text">
-                    Beautiful Huge 1 Family House In Heart Of Westbury. Newly Renovated With New Wood
-                  </p>
-
-                  <ul class="card-list">
-
-                    <li class="card-item">
-                      <strong>3</strong>
-
-                      <ion-icon name="bed-outline"></ion-icon>
-
-                      <span>Bedrooms</span>
-                    </li>
-
-                    <li class="card-item">
-                      <strong>2</strong>
-
-                      <ion-icon name="man-outline"></ion-icon>
-
-                      <span>Bathrooms</span>
-                    </li>
-
-                    <li class="card-item">
-                      <strong>3450</strong>
-
-                      <ion-icon name="square-outline"></ion-icon>
-
-                      <span>Square Ft</span>
-                    </li>
-
-                  </ul>
-
-                </div>
-
-                <div class="card-footer">
-
-                  <div class="card-author">
-
-                    <figure class="author-avatar">
-                      <img src="./assets/images/author.jpg" alt="William Seklo" class="w-100">
+                          <button class="banner-actions-btn">
+                            <ion-icon name="location"></ion-icon>
+      
+                            <address>{{ property.location }}</address>
+                          </button>
+      
+                          <button class="banner-actions-btn">
+                            <ion-icon name="camera"></ion-icon>
+      
+                            <span>4</span>
+                          </button>
+      
+                          <button class="banner-actions-btn">
+                            <ion-icon name="film"></ion-icon>
+      
+                            <span>2</span>
+                          </button>
+      
+                        </div>
                     </figure>
-
-                    <div>
-                      <p class="author-name">
-                        <a href="#">William Seklo</a>
-                      </p>
-
-                      <p class="author-title">Estate Agents</p>
+                    <div class="card-content">
+                        <div class="card-price">
+                            <strong>${{ property.price }}</strong>/Month
+                        </div>
+                        <h3 class="h3 card-title">
+                            <a href="#">{{ property.name }}</a>
+                        </h3>
+                        <p class="card-text">
+                            {{ property.description }}
+                        </p>
                     </div>
-
-                  </div>
-
-                  <div class="card-footer-actions">
-
-                    <button class="card-footer-actions-btn">
-                      <ion-icon name="resize-outline"></ion-icon>
-                    </button>
-
-                    <button class="card-footer-actions-btn">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-
-                    <button class="card-footer-actions-btn">
-                      <ion-icon name="add-circle-outline"></ion-icon>
-                    </button>
-
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="property-card">
-
-                <figure class="card-banner">
-
-                  <a href="#">
-                    <img src="./assets/images/property-2.jpg" alt="Modern Apartments" class="w-100">
-                  </a>
-
-                  <div class="card-badge orange">For Sales</div>
-
-                  <div class="banner-actions">
-
-                    <button class="banner-actions-btn">
-                      <ion-icon name="location"></ion-icon>
-
-                      <address>Belmont Gardens, Chicago</address>
-                    </button>
-
-                    <button class="banner-actions-btn">
-                      <ion-icon name="camera"></ion-icon>
-
-                      <span>4</span>
-                    </button>
-
-                    <button class="banner-actions-btn">
-                      <ion-icon name="film"></ion-icon>
-
-                      <span>2</span>
-                    </button>
-
-                  </div>
-
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="card-price">
-                    <strong>$34,900</strong>/Month
-                  </div>
-
-                  <h3 class="h3 card-title">
-                    <a href="#">Modern Apartments</a>
-                  </h3>
-
-                  <p class="card-text">
-                    Beautiful Huge 1 Family House In Heart Of Westbury. Newly Renovated With New Wood
-                  </p>
-
-                  <ul class="card-list">
-
-                    <li class="card-item">
-                      <strong>3</strong>
-
-                      <ion-icon name="bed-outline"></ion-icon>
-
-                      <span>Bedrooms</span>
-                    </li>
-
-                    <li class="card-item">
-                      <strong>2</strong>
-
-                      <ion-icon name="man-outline"></ion-icon>
-
-                      <span>Bathrooms</span>
-                    </li>
-
-                    <li class="card-item">
-                      <strong>3450</strong>
-
-                      <ion-icon name="square-outline"></ion-icon>
-
-                      <span>Square Ft</span>
-                    </li>
-
-                  </ul>
-
-                </div>
-
-                <div class="card-footer">
-
-                  <div class="card-author">
-
-                    <figure class="author-avatar">
-                      <img src="./assets/images/author.jpg" alt="William Seklo" class="w-100">
-                    </figure>
-
-                    <div>
-                      <p class="author-name">
-                        <a href="#">William Seklo</a>
-                      </p>
-
-                      <p class="author-title">Estate Agents</p>
+                    <div class="card-footer">
+                        <div class="card-author">
+                            <button class="header-top-btn">Invest</button>
+                        </div>
+                        <div class="card-footer-actions">
+                            <button class="card-footer-actions-btn">
+                                <ion-icon name="resize-outline"></ion-icon>
+                            </button>
+                            <button class="card-footer-actions-btn">
+                                <ion-icon name="heart-outline"></ion-icon>
+                            </button>
+                            <button class="card-footer-actions-btn">
+                                <ion-icon name="add-circle-outline"></ion-icon>
+                            </button>
+                        </div>
                     </div>
-
-                  </div>
-
-                  <div class="card-footer-actions">
-
-                    <button class="card-footer-actions-btn">
-                      <ion-icon name="resize-outline"></ion-icon>
-                    </button>
-
-                    <button class="card-footer-actions-btn">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-
-                    <button class="card-footer-actions-btn">
-                      <ion-icon name="add-circle-outline"></ion-icon>
-                    </button>
-
-                  </div>
-
                 </div>
-
-              </div>
             </li>
-
-            <li>
-              <div class="property-card">
-
-                <figure class="card-banner">
-
-                  <a href="#">
-                    <img src="./assets/images/property-3.jpg" alt="Comfortable Apartment" class="w-100">
-                  </a>
-
-                  <div class="card-badge green">For Rent</div>
-
-                  <div class="banner-actions">
-
-                    <button class="banner-actions-btn">
-                      <ion-icon name="location"></ion-icon>
-
-                      <address>Belmont Gardens, Chicago</address>
-                    </button>
-
-                    <button class="banner-actions-btn">
-                      <ion-icon name="camera"></ion-icon>
-
-                      <span>4</span>
-                    </button>
-
-                    <button class="banner-actions-btn">
-                      <ion-icon name="film"></ion-icon>
-
-                      <span>2</span>
-                    </button>
-
-                  </div>
-
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="card-price">
-                    <strong>$34,900</strong>/Month
-                  </div>
-
-                  <h3 class="h3 card-title">
-                    <a href="#">Comfortable Apartment</a>
-                  </h3>
-
-                  <p class="card-text">
-                    Beautiful Huge 1 Family House In Heart Of Westbury. Newly Renovated With New Wood
-                  </p>
-
-                  <ul class="card-list">
-
-                    <li class="card-item">
-                      <strong>3</strong>
-
-                      <ion-icon name="bed-outline"></ion-icon>
-
-                      <span>Bedrooms</span>
-                    </li>
-
-                    <li class="card-item">
-                      <strong>2</strong>
-
-                      <ion-icon name="man-outline"></ion-icon>
-
-                      <span>Bathrooms</span>
-                    </li>
-
-                    <li class="card-item">
-                      <strong>3450</strong>
-
-                      <ion-icon name="square-outline"></ion-icon>
-
-                      <span>Square Ft</span>
-                    </li>
-
-                  </ul>
-
-                </div>
-
-                <div class="card-footer">
-
-                  <div class="card-author">
-
-                    <figure class="author-avatar">
-                      <img src="./assets/images/author.jpg" alt="William Seklo" class="w-100">
-                    </figure>
-
-                    <div>
-                      <p class="author-name">
-                        <a href="#">William Seklo</a>
-                      </p>
-
-                      <p class="author-title">Estate Agents</p>
-                    </div>
-
-                  </div>
-
-                  <div class="card-footer-actions">
-
-                    <button class="card-footer-actions-btn">
-                      <ion-icon name="resize-outline"></ion-icon>
-                    </button>
-
-                    <button class="card-footer-actions-btn">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-
-                    <button class="card-footer-actions-btn">
-                      <ion-icon name="add-circle-outline"></ion-icon>
-                    </button>
-
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="property-card">
-
-                <figure class="card-banner">
-
-                  <a href="#">
-                    <img src="./assets/images/property-4.png" alt="Luxury villa in Rego Park" class="w-100">
-                  </a>
-
-                  <div class="card-badge green">For Rent</div>
-
-                  <div class="banner-actions">
-
-                    <button class="banner-actions-btn">
-                      <ion-icon name="location"></ion-icon>
-
-                      <address>Belmont Gardens, Chicago</address>
-                    </button>
-
-                    <button class="banner-actions-btn">
-                      <ion-icon name="camera"></ion-icon>
-
-                      <span>4</span>
-                    </button>
-
-                    <button class="banner-actions-btn">
-                      <ion-icon name="film"></ion-icon>
-
-                      <span>2</span>
-                    </button>
-
-                  </div>
-
-                </figure>
-
-                <div class="card-content">
-
-                  <div class="card-price">
-                    <strong>$34,900</strong>/Month
-                  </div>
-
-                  <h3 class="h3 card-title">
-                    <a href="#">Luxury villa in Rego Park</a>
-                  </h3>
-
-                  <p class="card-text">
-                    Beautiful Huge 1 Family House In Heart Of Westbury. Newly Renovated With New Wood
-                  </p>
-
-                  <ul class="card-list">
-
-                    <li class="card-item">
-                      <strong>3</strong>
-
-                      <ion-icon name="bed-outline"></ion-icon>
-
-                      <span>Bedrooms</span>
-                    </li>
-
-                    <li class="card-item">
-                      <strong>2</strong>
-
-                      <ion-icon name="man-outline"></ion-icon>
-
-                      <span>Bathrooms</span>
-                    </li>
-
-                    <li class="card-item">
-                      <strong>3450</strong>
-
-                      <ion-icon name="square-outline"></ion-icon>
-
-                      <span>Square Ft</span>
-                    </li>
-
-                  </ul>
-
-                </div>
-
-                <div class="card-footer">
-
-                  <div class="card-author">
-
-                    <figure class="author-avatar">
-                      <img src="./assets/images/author.jpg" alt="William Seklo" class="w-100">
-                    </figure>
-
-                    <div>
-                      <p class="author-name">
-                        <a href="#">William Seklo</a>
-                      </p>
-
-                      <p class="author-title">Estate Agents</p>
-                    </div>
-
-                  </div>
-
-                  <div class="card-footer-actions">
-
-                    <button class="card-footer-actions-btn">
-                      <ion-icon name="resize-outline"></ion-icon>
-                    </button>
-
-                    <button class="card-footer-actions-btn">
-                      <ion-icon name="heart-outline"></ion-icon>
-                    </button>
-
-                    <button class="card-footer-actions-btn">
-                      <ion-icon name="add-circle-outline"></ion-icon>
-                    </button>
-
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-
-          </ul>
+            {% endfor %}
+        </ul>
 
         </div>
       </section>
-
 
       <!-- 
         - #CTA
@@ -714,7 +324,7 @@
         <div class="footer-brand">
 
           <a href="#" class="logo">
-            <img src="./assets/images/logo-white.png" alt="Umbrella logo" width="150px">
+            <img src="../static/assets/images/logo-white.png" alt="Umbrella logo" width="150px">
           </a>
 
           <p class="section-text">
@@ -877,7 +487,7 @@
   <!-- 
     - custom js link
   -->
-  <script src="./assets/js/script.js"></script>
+  <script src="../static/assets/js/script.js"></script>
 
   <!-- 
     - ionicon link

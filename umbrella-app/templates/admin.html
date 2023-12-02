@@ -30,7 +30,7 @@
                     <span class="material-symbols-outlined">apartment</span>
                     <h3>Properties</h3>
                 </a>
-                <a href="#">
+                <a href="{{ url_for('investors') }}">
                     <span class="material-symbols-outlined">group</span>
                     <h3>Investors</h3>
                 </a>
@@ -71,23 +71,23 @@
                     <span class="material-symbols-outlined">home</span>
                     <div class="middle">
                         <h3>Total Properties</h3>
-                        <h1>14</h1>
+                        <h1>{{ total_properties }}</h1>
                     </div>
                 </div>
 
                 <div class="visitors">
                     <span class="material-symbols-outlined">analytics</span>
                     <div class="middle">
-                        <h3>Total Sales</h3>
-                        <h1>256</h1>
+                        <h3>Total Users</h3>
+                        <h1>{{ total_users }}</h1>
                     </div>
                 </div>
 
                 <div class="adminitrators">
                     <span class="material-symbols-outlined">group</span>
                     <div class="middle">
-                        <h3>Total Visitors</h3>
-                        <h1>03</h1>
+                        <h3>Adminitrators</h3>
+                        <h1>{{ total_admin }}</h1>
                     </div>
                 </div>
             </div>
@@ -100,7 +100,7 @@
                         <tr>
                             <th>Property</th>
                             <th>ID</th>
-                            <th>Category</th>
+                            <th>Location</th>
                             <th>Description</th>
                             <th>Status</th>
                             <th>Date Added</th>
@@ -122,6 +122,7 @@
         </main>
 
         <div class="right">
+            {% if 'admin_id' in session %}
             <div class="top">
                 <button id="menu-btn">
                     <span class="material-symbols-outlined">menu</span>
@@ -132,13 +133,16 @@
                 </div>
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>kayc0des</b></p>
+                        <p>Hey, <b>{{ session['admin_username'] }}</b></p>
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profile-photo">
                         <img src="../static/asset/img/kay.jpeg" alt="">
                     </div>
                 </div>
+            {% else %}
+                <p>Condition is false</p>
+            {% endif %}
             </div>
             <!-- End of Top-->
 

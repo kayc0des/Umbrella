@@ -19,17 +19,61 @@ themeToggler.addEventListener('click', () => {
     themeToggler.querySelector('span:nth-child(2)').classList.toggle('active');
 })
 
-// fill orders in table
-Properties.forEach(property => {
-    const tr = document.createElement('tr');
-    const trContent = `
-                        <td>${property.propertyName}</td>
-                        <td>${property.propertyID}</td>
-                        <td>${property.propertyCat}</td>
-                        <td>${property.propertyDesc}</td>
-                        <td>${property.propertyStatus}</td>
-                        <td>${property.propertyDateAdded}</td>
-                        `
-    tr.innerHTML = trContent;
-    document.querySelector('table tbody').appendChild(tr);
-})
+// Populate Admin Tables
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('/fetch_properties')
+        .then(response => response.json())
+        .then(properties => {
+            properties.forEach(property => {
+                const tr = document.createElement('tr');
+                const trContent = `
+                    <td>${property.propertyName}</td>
+                    <td>${property.propertyID}</td>
+                    <td>${property.propertyLocation}</td>
+                    <td>${property.propertyDesc}</td>
+                    <td>${property.propertyStatus}</td>
+                    <td>${property.propertyDateAdded}</td>
+                `;
+                tr.innerHTML = trContent;
+                document.querySelector('table tbody').appendChild(tr);
+            });
+        })
+        .catch(error => console.error('Error fetching properties:', error));
+
+        fetch('/fetch_users')
+        .then(response => response.json())
+        .then(users => {
+            users.forEach(user => {
+                const tr = document.createElement('tr');
+                const trContent = `
+                    <td>${user.userName}</td>
+                    <td>${user.userID}</td>
+                    <td>${user.userEmail}</td>s
+                    <td>${user.userDateAdded}</td>
+                `;
+                tr.innerHTML = trContent;
+                document.querySelector('table tbody').appendChild(tr);
+            });
+        })
+        .catch(error => console.error('Error fetching users:', error));
+});
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     fetch('/fetch_users')
+//         .then(response => response.json())
+//         .then(users => {
+//             users.forEach(user => {
+//                 const tr = document.createElement('tr');
+//                 const trContent = `
+//                     <td>${user.userName}</td>
+//                     <td>${user.userID}</td>
+//                     <td>${user.userEmail}</td>s
+//                     <td>${user.userDateAdded}</td>
+//                 `;
+//                 tr.innerHTML = trContent;
+//                 document.querySelector('table tbody').appendChild(tr);
+//             });
+//         })
+//         .catch(error => console.error('Error fetching users:', error));
+// });

@@ -1,0 +1,71 @@
+/* ============= ADD PROPERTY FORM ==================== */
+.input-wrap {
+    position: relative;
+    height: 37px;
+    margin-bottom: 2rem;
+}
+
+.input-field {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #bbb;
+    padding: 0;
+    font-size: 0.95rem;
+    color: #151111;
+    transition: 0.4s;
+}
+
+label {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.95rem;
+    color: #bbb;
+    pointer-events: none;
+    transition: 0.4s;
+}
+
+.input-field.active {
+    border-bottom-color: #151111;
+}
+
+.input-field.active + label {
+    font-size: 0.75rem;
+    top: -2px;
+}
+
+.send-btn {
+    display: inline-block;
+    width: 100%;
+    height: 43px;
+    background-color: #ec5c24;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-size: .8rem;
+    margin-bottom: 2rem;
+    transition: 0.3s;
+}
+
+.send-btn:hover {
+    background-color: #663399;
+}
+
+.text {
+    color: #bbb;
+    font-size: 0.7rem;
+}
+
+.text a {
+    color: #bbb;
+    transition: 0.3s;
+}
+
+.text a:hover {
+    color: #663399;
+}
