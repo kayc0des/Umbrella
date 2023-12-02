@@ -30,7 +30,7 @@
                     <span class="material-symbols-outlined">apartment</span>
                     <h3>Properties</h3>
                 </a>
-                <a href="{{ url_for('investors') }}" class="active">
+                <a href="{{ url_for('investors') }}">
                     <span class="material-symbols-outlined">group</span>
                     <h3>Investors</h3>
                 </a>
@@ -42,7 +42,7 @@
                     <span class="material-symbols-outlined">receipt_long</span>
                     <h3>Transactions</h3>
                 </a>
-                <a href="#">
+                <a href="{{ url_for('messages') }}" class="active">
                     <span class="material-symbols-outlined">sms</span>
                     <h3>Messages</h3>
                     <span class="message-count">3</span>
@@ -65,12 +65,12 @@
 
             <div class="all-properties">
                 <h2>Umbrella Users</h2>
-                <table id="users-table">
+                <table id="messages-table">
                     <thead>
                         <tr>
-                            <th>Username</th>
                             <th>ID</th>
-                            <th>Email</th>
+                            <th>User ID</th>
+                            <th>Text</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -186,6 +186,6 @@
 
     <script src="../static/properties.js"></script>
     <script src="../static/admin-app.js"></script>
-    <script src="../static/admin-userpool.js"></script>
+    <script src="../static/messages.js"></script>
 </body>
 </html>

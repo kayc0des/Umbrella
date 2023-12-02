@@ -44,10 +44,19 @@ def configure_views(app):
         user_list = [{
             'userName': user.username,
             'userID': user.id,
-            'userEmail': user.email, 
-            'userDateAdded': user.created_at
+            'userEmail': user.email
         } for user in users]
         return jsonify(user_list)
+    
+    @app.route('/fetch_messages', methods=['GET'])
+    def fetch_messages():
+        messages = db_session.query(Message).all()
+        message_list = [{
+            'messageID': message.id,
+            'userID': message.user_id,
+            'messageText': message.text
+        } for message in messages]
+        return jsonify(message_list)
 
     @app.route('/login')
     def login():
@@ -60,6 +69,10 @@ def configure_views(app):
     @app.route('/properties')
     def properties():
         return render_template('property.html')
+    
+    @app.route('/messages')
+    def messages():
+        return render_template('messages.html')
     
     @app.route('/admin')
     def admin():
