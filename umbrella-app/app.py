@@ -102,6 +102,13 @@ def configure_views(app):
     def purchase():
         return render_template('purchase.html')
     
+    @app.route('/property_names', methods=['GET'])
+    def get_property_names():
+        properties = db_session.query(Property).all()
+        property_names = [property.name for property in properties]
+        
+        return jsonify({'property_names': property_names})
+    
     @app.route('/logout')
     def logout():
         # Clear the session data

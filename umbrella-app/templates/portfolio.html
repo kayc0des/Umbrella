@@ -22,7 +22,7 @@
             </div>
 
             <div class="sidebar">
-                <a href="{{ url_for('admin') }}" class="active">
+                <a href="{{ url_for('portfolio') }}" class="active">
                     <span class="material-symbols-outlined">dashboard</span>
                     <h3>My Dashboard</h3>
                 </a>
@@ -109,6 +109,7 @@
         </main>
 
         <div class="right">
+            {% if 'user_id' in session %}
             <div class="top">
                 <button id="menu-btn">
                     <span class="material-symbols-outlined">menu</span>
@@ -119,11 +120,11 @@
                 </div>
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>kayc0des</b></p>
-                        <small class="text-muted">Admin</small>
+                        <p>{{ session['username'] }}</b></p>
+                        <small class="text-muted">Investor</small>
                     </div>
                     <div class="profile-photo">
-                        <img src="../static/asset/img/kay.jpeg" alt="">
+                        <img src="../static/asset/img/profile.jpeg" alt="">
                     </div>
                 </div>
             </div>
@@ -134,69 +135,38 @@
                 <div class="updates">
                     <div class="update">
                         <div class="profile-photo">
-                            <img src="../static/asset/img/kay.jpeg" alt="">
+                            <img src="../static/asset/img/profile.jpeg" alt="">
                         </div>
                         <div class="message">
-                            <p><b>kayc0des</b> added a new property</p>
+                            <p><b>{{ session['username'] }}</b> bought a new property</p>
                             <small class="text-muted">2 Minutes Ago</small>
                         </div>
                     </div>
                     <div class="update">
                         <div class="profile-photo">
-                            <img src="../static/asset/img/kay.jpeg" alt="">
+                            <img src="../static/asset/img/profile.jpeg" alt="">
                         </div>
                         <div class="message">
-                            <p><b>kayc0des</b> modified an existing property</p>
+                            <p><b>{{ session['username'] }}</b>bought a new property</p>
                             <small class="text-muted">39 Minutes Ago</small>
                         </div>
                     </div>
                     <div class="update">
                         <div class="profile-photo">
-                            <img src="../static/asset/img/kay.jpeg" alt="">
+                            <img src="../static/asset/img/profile.jpeg" alt="">
                         </div>
                         <div class="message">
-                            <p><b>kayc0des</b> deleted an existing property</p>
+                            <p><b>{{ session['username'] }}</b> sold a property</p>
                             <small class="text-muted">56 Minutes Ago</small>
                         </div>
                     </div>
                 </div>
             </div>
             <!--------------- END OF INSIGHTS --------------->
-            <div class="sales-analytics">
-                <h2>Sales Analytics</h2>
-                <div class="item rental-property">
-                    <div class="icon">
-                        <span class="material-symbols-outlined">real_estate_agent</span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>PROPERTIES SOLD</h3>
-                            <small class="text-muted">Last 24 Hours</small>
-                        </div>
-                        <h5 class="success">+39%</h5>
-                        <h3>1200</h3>
-                    </div>
-                </div>
-                <div class="item income">
-                    <div class="icon">
-                        <span class="material-symbols-outlined">payments</span>
-                    </div>
-                    <div class="right">
-                        <div class="info">
-                            <h3>TOTAL INCOME</h3>
-                            <small class="text-muted">Last 24 Hours</small>
-                        </div>
-                        <h5 class="success">+39%</h5>
-                        <h3>1200</h3>
-                    </div>
-                </div>
-                <div class="item add-property">
-                    <div>
-                        <span class="material-symbols-outlined">add</span>
-                        <h3>Add Property</h3>
-                    </div>
-                </div>
-            </div>
+        {% else %}
+            <!-- Show "Create an account" link if not logged in -->
+            <p>Error</p>
+        {% endif %}
         </div>
     </div>
 
