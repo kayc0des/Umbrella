@@ -1,6 +1,8 @@
 # Umbrella Platform
 
-Umbrella is a platform designed to diversify the incomes of African households by focusing on fractional ownership in real estate properties.
+African households are disproportionately burdened by the perils of financial dependence, with a staggering majority relying solely on a single source of income, primarily salaried employment (World Bank, 2020). This reliance creates a precarious financial balance that leaves families highly vulnerable to unexpected expenses, economic fluctuations, and limited opportunities for wealth creation (AfDB, 2019).
+
+Umbrella is a platform designed to diversify the incomes of African households by focusing on fractional ownership in real estate properties. 
 
 ## Tech Stack
 
@@ -24,6 +26,11 @@ Umbrella is a platform designed to diversify the incomes of African households b
 
 - **basemodel.py:** Defines the base model, and other classes inherit from the base.
 
+- /templates:** Contains all html files and templates.
+
+- /static:** Contains all css and js codes, and a file storage directory for handling media files.
+
+
 - **Other Files:**
   - *persisting.py:* creates a database session.
   - *portfolio.js:* Handles portfolio-related functionalities.
@@ -31,19 +38,22 @@ Umbrella is a platform designed to diversify the incomes of African households b
 
 ## Running the Application
 
-To run the application, follow these steps:
+To run the application, follow these steps: 
 
 1. Install the required dependencies:
     ```bash
     pip install -r requirements.txt
     ```
 
-2. Navigate to the project directory:
+2. Navigate to the project directory and run:
+   You may need to set up a personal database on your local machine.
     ```bash
     cd umbrella-app
+    python3 create_tables.py
+    python3 superadmin.py
     ```
 
-3. Run the application:
+4. Run the application:
     ```bash
     python3 app.py
     ```
