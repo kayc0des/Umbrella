@@ -24,34 +24,21 @@
             <div class="sidebar">
                 <a href="{{ url_for('admin') }}">
                     <span class="material-symbols-outlined">dashboard</span>
-                    <h3>Dashboard</h3>
+                    <h3>My Dashboard</h3>
                 </a>
-                <a href="{{ url_for('addproperty') }}">
+                <a href="{{ url_for('investments') }}">
                     <span class="material-symbols-outlined">apartment</span>
-                    <h3>Properties</h3>
+                    <h3>My Properties</h3>
                 </a>
-                <a href="{{ url_for('investors') }}" class="active">
-                    <span class="material-symbols-outlined">group</span>
-                    <h3>Investors</h3>
-                </a>
-                <a href="#">
-                    <span class="material-symbols-outlined">payments</span>
-                    <h3>Payments ROI</h3>
-                </a>
-                <a href="#">
+                <a href="{{ url_for('purchase') }}" class="active">
                     <span class="material-symbols-outlined">receipt_long</span>
-                    <h3>Transactions</h3>
+                    <h3>Purchase</h3>
                 </a>
-                <a href="{{ url_for('messages') }}">
-                    <span class="material-symbols-outlined">sms</span>
-                    <h3>Messages</h3>
-                    <span class="message-count">3</span>
+                <a href="{{ url_for('index' )}}">
+                    <span class="material-symbols-outlined">home</span>
+                    <h3>Home</h3>
                 </a>
-                <a href="#">
-                    <span class="material-symbols-outlined">supervisor_account</span>
-                    <h3>Admins</h3>
-                </a>
-                <a href="#">
+                <a href="{{ url_for('logout' )}}">
                     <span class="material-symbols-outlined">logout</span>
                     <h3>Logout</h3>
                 </a>
@@ -60,36 +47,55 @@
         <!--------------- END OF ASIDE --------------->
 
         <main>
-            <h1>Investors</h1>
+            <h1>Invest</h1>
 
+            <!--------------- END OF INSIGHTS --------------->
 
             <div class="all-properties">
-                <h2>Umbrella Users</h2>
-                <table id="users-table">
-                    <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>ID</th>
-                            <th>Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- <tr>
-                            <td>Lorem Ispum</td>
-                            <td>File Upload</td>
-                            <td>Research Paper</td>
-                            <td>Lorem ispum dolor sit amet</td>
-                            <td>Open</td>
-                            <td>30-10-2023</td>
-                        </tr> -->
-                    </tbody>
-                </table>
-                <a href="#">Show All</a>
-            </div>
+                <form action="" enctype="multipart/form-data" method="post" autocomplete="off" class="sign-up-form">
+                    <div class="actual-form">
+                        <div class="input-wrap">
+                            <input name="name" type="name" minlength="3" class="input-field" required/>
+                            <label for="name">Name</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input name="description" type="name" minlength="3" class="input-field" required/>
+                            <label for="description">Decription</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input name="location" type="name" class="input-field" required/>
+                            <label for="location">Location</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input name="price" type="number" class="input-field" required/>
+                            <label for="price">Price</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input name="fractions" type="number" minlength="4" autocomplete="off" class="input-field" required/>
+                            <label for="fractions">Fractions</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input name="status" type="name" class="input-field" required/>
+                            <label for="status">Status</label>
+                        </div>
+
+                        <div class="input-wrap">
+                            <input name="images" type="file" accept="image/*" class="input-field" multiple required/>
+                            <label for="images"></label>
+                        </div>
+                        
+
+                        <input type="submit" value="Add Property" class="sign-btn">
+                    </div>
+                </form>
         </main>
 
         <div class="right">
-            {% if 'admin_id' in session %}
             <div class="top">
                 <button id="menu-btn">
                     <span class="material-symbols-outlined">menu</span>
@@ -100,16 +106,13 @@
                 </div>
                 <div class="profile">
                     <div class="info">
-                        <p>Hey, <b>{{ session['admin_username'] }}</b></p>
+                        <p>Hey, <b>kayc0des</b></p>
                         <small class="text-muted">Admin</small>
                     </div>
                     <div class="profile-photo">
                         <img src="../static/asset/img/kay.jpeg" alt="">
                     </div>
                 </div>
-            {% else %}
-                <p>Condition is false</p>
-            {% endif %}
             </div>
             <!-- End of Top-->
 
@@ -186,6 +189,5 @@
 
     <script src="../static/properties.js"></script>
     <script src="../static/admin-app.js"></script>
-    <script src="../static/admin-userpool.js"></script>
 </body>
 </html>

@@ -454,7 +454,7 @@
                     </figure>
                     <div class="card-content">
                         <div class="card-price">
-                            <strong>${{ property.price }}</strong>/Month
+                            <strong>${{ property.price }}</strong><br> fraction = {{ property.fractions}}
                         </div>
                         <h3 class="h3 card-title">
                             <a href="#">{{ property.name }}</a>
@@ -465,7 +465,7 @@
                     </div>
                     <div class="card-footer">
                         <div class="card-author">
-                            <button class="header-top-btn">Invest</button>
+                            <button class="header-top-btn investButton">Invest</button>
                         </div>
                         <div class="card-footer-actions">
                             <button class="card-footer-actions-btn">
@@ -1027,6 +1027,12 @@
     - custom js link
   -->
   <script src="../static/assets/js/script.js"></script>
+
+  <script>
+    document.querySelector(".investButton").addEventListener("click", function() {
+        window.location.href = "{{ url_for('portfolio') }}";
+    });
+  </script>
 
   <!-- 
     - ionicon link

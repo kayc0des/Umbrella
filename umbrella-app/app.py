@@ -98,6 +98,10 @@ def configure_views(app):
     def portfolio():
         return render_template('portfolio.html')
     
+    @app.route('/purchase')
+    def purchase():
+        return render_template('purchase.html')
+    
     @app.route('/logout')
     def logout():
         # Clear the session data
